@@ -7,10 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.larvalabs.svgandroid.SVG;
-import com.larvalabs.svgandroid.SVGParser;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -46,8 +42,8 @@ public class DownloadSVG extends AsyncTask<String, Void, Drawable> {
                 //"http://upload.wikimedia.org/wikipedia/de/d/d7/RC_Lens_Logo.svg");//urls[0]);
                 HttpURLConnection urlConnection = (HttpURLConnection) imageUrl.openConnection();
                 InputStream inputStream = urlConnection.getInputStream();
-                SVG svg = SVGParser.getSVGFromInputStream(inputStream);
-                result = svg.createPictureDrawable();
+                // SVG svg = SVGParser.getSVGFromInputStream(inputStream);
+                // result = svg.createPictureDrawable();
             } catch (Exception e) {
                 Log.e(LOG_TAG, e.toString());
             }
