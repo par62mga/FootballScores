@@ -11,8 +11,9 @@ import barqsoft.footballscores.DatabaseContract.scores_table;
  */
 public class ScoresDBHelper extends SQLiteOpenHelper
 {
-    public static final String DATABASE_NAME = "Scores.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME    = "Scores.db";
+    private static final int    DATABASE_VERSION = 3;
+
     public ScoresDBHelper(Context context)
     {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -21,6 +22,7 @@ public class ScoresDBHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+
         final String CreateScoresTable = "CREATE TABLE " + DatabaseContract.SCORES_TABLE + " ("
                 + scores_table._ID + " INTEGER PRIMARY KEY,"
                 + scores_table.DATE_COL + " TEXT NOT NULL,"
@@ -32,6 +34,8 @@ public class ScoresDBHelper extends SQLiteOpenHelper
                 + scores_table.AWAY_GOALS_COL + " TEXT NOT NULL,"
                 + scores_table.MATCH_ID + " INTEGER NOT NULL,"
                 + scores_table.MATCH_DAY + " INTEGER NOT NULL,"
+                + scores_table.HOME_URL_COL + " TEXT NOT NULL,"
+                + scores_table.AWAY_URL_COL + " TEXT NOT NULL,"
                 + " UNIQUE ("+scores_table.MATCH_ID+") ON CONFLICT REPLACE"
                 + " );";
         db.execSQL(CreateScoresTable);

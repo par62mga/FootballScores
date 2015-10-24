@@ -1,32 +1,75 @@
 package barqsoft.footballscores;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Changes made as part of the Football scores project:
+ *
+ * Required Components in the Rubric:
+ * 1) Football Scores Widget -- implemented in widget/ScoresWidget and ScoresWidget. The "Track
+ *    football scores" widget shows matches for yesterday, today and tomorrow.
+ * 2) Content descriptions -- implemented content descriptions that include all match and score
+ *    detail with a better description of what is happening when buttons are clicked.
+ * 3) Layout mirroring -- implemented layout mirroring for both the app and widget.
+ *
+ * Optional Components:
+ * 1) Extra error cases found and addressed (see list below)
+ * 2) Football scores widget was implemented as a collection widget and based on advanced android
+ *    course notes
+ * 3) Included all "UI" strings into strings.xml, included "translatable=false" where needed and
+ *    also added "arrays.xml" file to manage translation of team name to team crest.
+ *    1) Strings moved league numbers and names to xml files; did the same for team names/crests
+ *
+ * Error cases found/accounted for:
+ *    - When match detail selected, fixed "not known league, please report". This was corrected by
+ *      creating "arrays.xml" and FootballLeagues class to better manage mapping of league number
+ *      to league names.
+ *    - When opening match details, all rows were updated. Corrected this by only updating the view
+ *      in the row that changed
+ *    - Improved back button handling, when row detail is shown it is now hidden first before
+ *      allowing "back" to exit the app
+ *    - Save/restore instance state was broken in that only one selected match was stored, not one
+ *      per fragment. To fix, moved selected match logic into ScoresAdapter and save/restore in the
+ *      MainScreenFragment lifecycle
+ *    - removed maxSDK from manifest and synchronized targetSDK with build.gradle settings
+ *    - Lifecycle of fragments was broken on screen rotation. The FragmentStatePagerAdapter
+ *      recycles fragments on rotate rather than using the new ones that were not properly
+ *      populated with views...fixed by moving logic to manage fragments fully within the adapter
+ *    - widget found "today" scores, but "today" page does not show anything...need to investigate
+ *
+ * Other cleanup:
+ *    - ViewHolder - cleaned up access to fields and also changed any public access fields to
+ *      "final" to make them immutable, but still efficient to access
+ *    - removed maxSDK from manifest and synchronized targetSDK with build.gradle settings
+ *    - scoresAdapter - changed to FootballAdapter to follow standard java naming conventions
+ */
+
 public class MainActivity extends ActionBarActivity
 {
-    public static int selected_match_id;
-    public static int current_fragment = 2;
-    public static String LOG_TAG = "MainActivity";
-    private final String save_tag = "Save Test";
-    private PagerFragment my_main;
+    private static String LOG_TAG   = MainActivity.class.getSimpleName();
+
+    private static String FRAGMENT_TAG = "Pager_Fragment";
+
+    private PagerFragment mPagerFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(LOG_TAG, "Reached MainActivity onCreate");
         if (savedInstanceState == null) {
-            my_main = new PagerFragment();
+            mPagerFragment = new PagerFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, my_main)
+                    .add(R.id.container, mPagerFragment)
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,26 +97,29 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState)
-    {
-        Log.v(save_tag,"will save");
-        Log.v(save_tag,"fragment: "+String.valueOf(my_main.mPagerHandler.getCurrentItem()));
-        Log.v(save_tag,"selected id: "+selected_match_id);
-        outState.putInt("Pager_Current",my_main.mPagerHandler.getCurrentItem());
-        outState.putInt("Selected_match",selected_match_id);
-        getSupportFragmentManager().putFragment(outState,"my_main",my_main);
+    public void onBackPressed () {
+        // this logic was added to undo showing any active row detail that was previous opened up
+        // by the user. When no detail is shown, the app is exited
+        MainScreenFragment fragment = mPagerFragment.getActiveFragment ();
+        if (! fragment.hideActiveDetailView() ) {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // simplified code here to only save/restore the pager. The logic to track active pages and
+        // the selected match was broken and fixed by moving this save/restore logic to fragments
+        getSupportFragmentManager().putFragment(outState, FRAGMENT_TAG, mPagerFragment);
         super.onSaveInstanceState(outState);
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState)
-    {
-        Log.v(save_tag,"will retrive");
-        Log.v(save_tag,"fragment: "+String.valueOf(savedInstanceState.getInt("Pager_Current")));
-        Log.v(save_tag,"selected id: "+savedInstanceState.getInt("Selected_match"));
-        current_fragment = savedInstanceState.getInt("Pager_Current");
-        selected_match_id = savedInstanceState.getInt("Selected_match");
-        my_main = (PagerFragment) getSupportFragmentManager().getFragment(savedInstanceState,"my_main");
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        // simplified code here to only save/restore the pager.
+        mPagerFragment = (PagerFragment) getSupportFragmentManager().getFragment(
+                savedInstanceState,
+                FRAGMENT_TAG);
         super.onRestoreInstanceState(savedInstanceState);
     }
 }

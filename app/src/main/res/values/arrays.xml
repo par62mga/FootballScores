@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- The array below defines which leagues we want to fetch/present to the user:
+        394- 1. Bundesliga
+        395- 2. Bundesliga
+        398- Premier League
+        399- Primera Division
+        405- Champions League
+        NOTE: a linear search is used, so these numbers can be in any order
+      -->
+    <array name="leagues_to_fetch">
+        <item>394</item>
+        <item>395</item>
+        <item>398</item>
+        <item>399</item>
+        <item>405</item>
+    </array>
+
+    <!-- This array is used to configure which leagues are "champion leagues" and presented with
+         different match day names based on what day of the championship match is being played.
+         For Fall 2015, this league appears to be "405" based on current matches seen on television
+      -->
+    <array name="league_champions">
+        <item>405</item>
+    </array>
+
+    <!-- The two tables below define all leagues recognized by the app with the league number and
+         corresponding name in the same relative positions in their respective arrays.
+         NOTE: this list needs to be updated in 2016
+      -->
+    <array name="league_numbers">
+        <item>394</item>
+        <item>395</item>
+        <item>396</item>
+        <item>397</item>
+        <item>398</item>
+        <item>399</item>
+        <item>400</item>
+        <item>401</item>
+        <item>402</item>
+        <item>403</item>
+        <item>404</item>
+        <item>405</item>
+    </array>
+
+    <array name="league_names">
+        <item>1. Bundesliga</item>
+        <item>2. Bundesliga</item>
+        <item>Ligue 1</item>
+        <item>Ligue 2</item>
+        <item>Premier League</item>
+        <item>Primera Division</item>
+        <item>Segunda Division</item>
+        <item>Serie A</item>
+        <item>Primeira Liga</item>
+        <item>3. Bundesliga</item>
+        <item>Eredivisie</item>
+        <item>Champions League</item>
+    </array>
+
+    <!-- The two tables below define all team names/team crests recognized by the app with the team
+         name and corresponding image in the same relative positions in their respective arrays.
+
+         NOTE: a hash-map is created from this data so the search is relatively efficient.
+      -->
+    <array name="team_crest_names" translatable="false">
+        <item>AD Alcorcón</item>
+        <item>Albacete</item>
+        <item>Arminia Bielefeld</item>
+        <item>Arsenal FC</item>
+        <item>Aston Villa FC</item>
+        <item>Athletic Bilbao B</item>
+        <item>Bayer Leverkusen</item>
+        <item>Benfica Lissabon</item>
+        <item>Bor. Mönchengladbach</item>
+        <item>CA Osasuna</item>
+        <item>CD Leganes</item>
+        <item>CD Lugo</item>
+        <item>CD Mirandes</item>
+        <item>CD Numancia de Soria</item>
+        <item>CD Tenerife</item>
+        <item>Chelsea FC</item>
+        <item>Club Atlético de Madrid</item>
+        <item>Córdoba CF</item>
+        <item>Crystal Palace FC</item>
+        <item>CSKA Moscow</item>
+        <item>Deportivo Alavés</item>
+        <item>Eintracht Braunschweig</item>
+        <item>Eintracht Frankfurt</item>
+        <item>Elche FC</item>
+        <item>Everton FC</item>
+        <item>FC Astana</item>
+        <item>FC Bayern München</item>
+        <item>1. FC Heidenheim 1846</item>
+        <item>FC Ingolstadt 04</item>
+        <item>1. FC Kaiserslautern</item>
+        <item>1. FC Köln</item>
+        <item>1. FC Nürnberg</item>
+        <item>1. FC Union Berlin</item>
+        <item>Fortuna Düsseldorf</item>
+        <item>FSV Frankfurt</item>
+        <item>1. FSV Mainz 05</item>
+        <item>Galatasaray SK</item>
+        <item>Getafe CF</item>
+        <item>Gimnàstic de Tarragona</item>
+        <item>Granada CF</item>
+        <item>Hamburger SV</item>
+        <item>Hannover 96</item>
+        <item>Hertha BSC</item>
+        <item>Huesca</item>
+        <item>Juventus Turin</item>
+        <item>Karlsruher SC</item>
+        <item>Leicester City FC</item>
+        <item>Levante UD</item>
+        <item>Liverpool FC</item>
+        <item>Málaga CF</item>
+        <item>Malmö FF</item>
+        <item>Manchester City FC</item>
+        <item>Manchester United FC</item>
+        <item>MSV Duisburg</item>
+        <item>Newcastle United FC</item>
+        <item>Norwich City FC</item>
+        <item>Paris Saint-Germain</item>
+        <item>PSV Eindhoven</item>
+        <item>Rayo Vallecano de Madrid</item>
+        <item>RC Celta de Vigo</item>
+        <item>RC Deportivo La Coruna</item>
+        <item>RCD Espanyol</item>
+        <item>RCD Mallorca</item>
+        <item>Real Betis</item>
+        <item>Real Madrid CF</item>
+        <item>Real Oviedo</item>
+        <item>Real Sociedad de Fútbol</item>
+        <item>Real Valladolid</item>
+        <item>Real Zaragoza</item>
+        <item>Red Bull Leipzig</item>
+        <item>SC Paderborn 07</item>
+        <item>SD Ponferradina</item>
+        <item>Sevilla FC</item>
+        <item>Shakhtar Donetsk</item>
+        <item>Southampton FC</item>
+        <item>SpVgg Greuther Fürth</item>
+        <item>Stoke City FC</item>
+        <item>Sunderland AFC</item>
+        <item>SV Darmstadt 98</item>
+        <item>SV Sandhausen</item>
+        <item>Swansea City FC</item>
+        <item>Tottenham Hotspur FC</item>
+        <item>TSG 1899 Hoffenheim</item>
+        <item>TSV 1860 München</item>
+        <item>UE Llagostera</item>
+        <item>VfB Stuttgart</item>
+        <item>VfL Bochum</item>
+        <item>VfL Wolfsburg</item>
+        <item>Watford FC</item>
+        <item>Werder Bremen</item>
+        <item>West Bromwich Albion FC</item>
+        <item>West Ham United FC</item>
+    </array>
+
+    <array name="team_crest_images">
+        <item>@drawable/ad_alcorcon</item>
+        <item>@drawable/albacete</item>
+        <item>@drawable/arminia_bielefeld</item>
+        <item>@drawable/arsenal</item>
+        <item>@drawable/aston_villa_fc</item>
+        <item>@drawable/athletic_bilbao_b</item>
+        <item>@drawable/bayer_leverkusen</item>
+        <item>@drawable/benfica_lissabon</item>
+        <item>@drawable/bor_monchengladbach</item>
+        <item>@drawable/ca_osasuna</item>
+        <item>@drawable/cd_leganes</item>
+        <item>@drawable/cd_lugo</item>
+        <item>@drawable/cd_mirandes</item>
+        <item>@drawable/cd_numancia_de_soria</item>
+        <item>@drawable/cd_tenerife</item>
+        <item>@drawable/chelsea</item>
+        <item>@drawable/club_atletico_de_madrid</item>
+        <item>@drawable/cordoba_cf</item>
+        <item>@drawable/crystal_palace_fc</item>
+        <item>@drawable/cska_moscow</item>
+        <item>@drawable/deportivo_alavts</item>
+        <item>@drawable/eintracht_braunschweig</item>
+        <item>@drawable/eintracht_frankfurt</item>
+        <item>@drawable/elche_fc</item>
+        <item>@drawable/everton_fc_logo1</item>
+        <item>@drawable/fc_astana</item>
+        <item>@drawable/fc_bayern_munchen</item>
+        <item>@drawable/fc_heidenheim_1846</item>
+        <item>@drawable/fc_ingolstadt_04</item>
+        <item>@drawable/fc_kaiserslautern</item>
+        <item>@drawable/fc_koln</item>
+        <item>@drawable/fc_nurnberg</item>
+        <item>@drawable/fc_union_berlin</item>
+        <item>@drawable/fortuna_dc3bcsseldorf</item>
+        <item>@drawable/fsv_frankfurt</item>
+        <item>@drawable/fsv_mainz_05</item>
+        <item>@drawable/galatasaray_sk</item>
+        <item>@drawable/getafe_cf</item>
+        <item>@drawable/gimnastic_de_tarragona</item>
+        <item>@drawable/granada_cf</item>
+        <item>@drawable/hamburger_sv</item>
+        <item>@drawable/hannover_96</item>
+        <item>@drawable/hertha_bsc</item>
+        <item>@drawable/huesca</item>
+        <item>@drawable/juventus_turin</item>
+        <item>@drawable/karlsruher_sc</item>
+        <item>@drawable/leicester_city_fc_hd_logo</item>
+        <item>@drawable/levante_ud</item>
+        <item>@drawable/liverpool</item>
+        <item>@drawable/malaga_cf</item>
+        <item>@drawable/malmo_ff</item>
+        <item>@drawable/manchester_city</item>
+        <item>@drawable/manchester_united</item>
+        <item>@drawable/msv_duisburg</item>
+        <item>@drawable/newcastle_united</item>
+        <item>@drawable/norwich_city_fc</item>
+        <item>@drawable/paris_saint_germain</item>
+        <item>@drawable/psv_eindhoven</item>
+        <item>@drawable/rayo_vallecano_de_madrid</item>
+        <item>@drawable/rc_celta_de_vigo</item>
+        <item>@drawable/rc_deportivo_la_coruna</item>
+        <item>@drawable/rcd_espanyol</item>
+        <item>@drawable/rcd_mallorca</item>
+        <item>@drawable/real_betis</item>
+        <item>@drawable/real_madrid_cf</item>
+        <item>@drawable/real_oviedo</item>
+        <item>@drawable/real_sociedad_de_futbol</item>
+        <item>@drawable/real_valladolid</item>
+        <item>@drawable/real_zaragoza</item>
+        <item>@drawable/red_bull_leipzig</item>
+        <item>@drawable/sc_paderborn_07</item>
+        <item>@drawable/sd_ponferradina</item>
+        <item>@drawable/sevilla_fc</item>
+        <item>@drawable/shakhtar_donetsk</item>
+        <item>@drawable/southampton_fc</item>
+        <item>@drawable/spvgg_greuther_frth</item>
+        <item>@drawable/stoke_city</item>
+        <item>@drawable/sunderland</item>
+        <item>@drawable/sv_darmstadt_98</item>
+        <item>@drawable/sv_sandhausen</item>
+        <item>@drawable/swansea_city_afc</item>
+        <item>@drawable/tottenham_hotspur</item>
+        <item>@drawable/tsg_1899_hoffenheim</item>
+        <item>@drawable/tsv_1860_munich</item>
+        <item>@drawable/ue_llagostera</item>
+        <item>@drawable/vfb_stuttgart</item>
+        <item>@drawable/vfl_bochum</item>
+        <item>@drawable/vfl_wolfsburg</item>
+        <item>@drawable/watford_fc</item>
+        <item>@drawable/werder_bremen</item>
+        <item>@drawable/west_bromwich_albion_hd_logo</item>
+        <item>@drawable/west_ham</item>
+    </array>
+
+</resources>
